@@ -53,10 +53,22 @@
             bottom: 20%;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
+            width: 60px;
             height: 30px;
-            background-color: red;
-            border-radius: 5px;
+            background: #e74c3c;
+            border-radius: 5px 5px 2px 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .car::before, .car::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
         }
 
         .road {
@@ -66,16 +78,7 @@
             width: 200%;
             height: 25%;
             background: repeating-linear-gradient(90deg, #555, #555 20px, #fff 20px, #fff 40px);
-            animation: moveRoad 1s linear infinite;
-        }
-
-        @keyframes moveRoad {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-50%);
-            }
+            transition: transform 0.2s linear;
         }
 
         .click-button {
@@ -96,8 +99,13 @@
 
         @media (max-width: 600px) {
             .car {
-                width: 25px;
+                width: 30px;
                 height: 15px;
+            }
+
+            .car::before, .car::after {
+                width: 6px;
+                height: 6px;
             }
         }
     </style>
@@ -117,7 +125,7 @@
         function moveRoad() {
             distance++;
             document.getElementById('score-display').textContent = 'Distance: ' + distance + ' km';
-            road.style.animationDuration = (1 / (distance * 0.1 + 1)) + 's';
+            road.style.transform = 'translateX(-' + (distance * 5) + '%)';
         }
 
         Telegram.WebApp.ready();
