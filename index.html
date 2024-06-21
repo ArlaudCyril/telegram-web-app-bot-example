@@ -121,11 +121,16 @@
     <script type="application/javascript">
         let distance = 0;
         let road = document.getElementById('road');
+        let offset = 0;
 
         function moveRoad() {
             distance++;
             document.getElementById('score-display').textContent = 'Distance: ' + distance + ' km';
-            road.style.transform = 'translateX(-' + (distance * 5) + '%)';
+            offset += 10;
+            if (offset >= 100) {
+                offset = 0;
+            }
+            road.style.transform = 'translateX(-' + offset + '%)';
         }
 
         Telegram.WebApp.ready();
